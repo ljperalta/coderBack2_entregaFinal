@@ -9,10 +9,10 @@ class CartManager {
         return carts;
     }
 
-    addCart = async (data) => {
+    addCart = async () => {
 
         const newCart = {
-            title: data.title,
+            quantity: 1,
             products: []
         };
 
@@ -101,7 +101,7 @@ const cartManager = new CartManager('server/bd/carts.json')
 module.exports = {
     getCart: async () => await cartManager.getCart(),
     getCartById: async (id) => await cartManager.getCartById(id),
-    addCart: async (data) => await cartManager.addCart(data),
+    addCart: async () => await cartManager.addCart(),
     addProductsToCart: async (idCart, idProduct) => await cartManager.addProductsToCart(idCart, idProduct),
     deleteAllProductsbyId: async (id) => await cartManager.deleteAllProductsbyId(id),
     deleteProductbyId: async (idCart, idProduct) => await cartManager.deleteProductbyId(idCart, idProduct),

@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const { hashPassword, comparePassword } = require('../utils/utils.js');
+const { addCart } = require('../managers/carts');
 const jwt = require('jsonwebtoken');
 
 class loginManager
@@ -26,8 +27,10 @@ class loginManager
       if (userExist) {
         return 'existente'; // El usuario ya existe
       }
+
+      const cart = await addCart();
       password = hashPassword(password); // Hashear la contraseña
-      const newUser = new User({ email: user, password: password, role: 'user', cart: 39, age: 40, first_name: first_name, last_name: last_name });
+      const newUser = new User({ email: user, password: password, role: 'user', cart: cart, age: 40, first_name: first_name, last_name: last_name });
       await newUser.save();
 
       return 'nuevo'; // Usuario registrado exitosamente

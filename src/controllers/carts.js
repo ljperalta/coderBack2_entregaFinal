@@ -32,8 +32,7 @@ const getCartsById = async (req, res) => {
 
 const addCarts = async (req, res) => {
     try {
-        const data = req.body;
-        const newCart = await addCart(data);
+        const newCart = await addCart();
         res.status(201).json({ message: "Carrito creado con exito", cart: newCart });
     } catch (error) {
         console.error("Error al crear carrito:", error);
