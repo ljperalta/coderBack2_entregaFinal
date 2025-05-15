@@ -12,7 +12,19 @@ class ProductManager
         return productos.find(producto => producto.id === id) || null;
     }
 
-    async addProduct(newproduct) {        
+    async getProduct(title, code) {
+        const productos = await this.leerJSON();
+        const producto = productos.find(producto => producto.title === title && producto.code === code);
+        return producto || null;
+    }
+
+    async addProduct(newproduct) {
+        
+        const prodExis = await this.getProduct(newproduct[0].title, newproduct[0].code);
+        if (prodExis) {
+            return await this.updateProductById(prodExis._id, newproduct[0]);
+        }
+
         const nuevoProducto = {  
                                 title: newproduct[0].title, 
                                 description: newproduct[0].description,
@@ -21,7 +33,7 @@ class ProductManager
                                 status: (newproduct[0].status > 0)?true: false,
                                 stock: Number(newproduct[0].stock),
                                 thumbnails: newproduct[0].thumbnails 
-                             };
+                            };
         const result = await Product.create(nuevoProducto);
 
         return result;
