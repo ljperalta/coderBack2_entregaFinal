@@ -1,0 +1,53 @@
+<h1>{{#if isCartView}}Carrito de Compras{{else}}Lista de Productos{{/if}}</h1>
+<h2>{{items.length}}***</h2>
+{{#if items.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Código</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Estado</th>
+                <th>Imagen</th>
+                {{#if isCartView}}<th>Cantidad</th>{{/if}}
+                <th>{{#if isCartView}}Eliminar{{else}}Sumar al carrito{{/if}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each items}}
+                <tr>
+                    <td>{{product.title}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.code}}</td>
+                    <td>${{product.price}}</td>
+                    <td>{{product.stock}}</td>
+                    <td>{{#if product.status}}Disponible{{else}}Agotado{{/if}}</td>
+                    <td><img src="{{product.thumbnails}}" alt="{{product.title}}" class="product-image"></td>
+                    {{#if isCartView}}
+                        <td>{{quantity}}</td>
+                        <td><button class="remove-from-cart"><i class="fas fa-trash-alt"></i></button></td>
+                    {{else}}
+                        <td><button class="add-to-cart"><i class="fas fa-cart-plus"></i></button></td>
+                    {{/if}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#unless isCartView}}
+        <div class="pagination">
+            {{#if hasPrevPage}}
+                <a href="?page={{prevPage}}{{#if limit}}&limit={{limit}}{{/if}}{{#if query}}&query={{query}}{{/if}}{{#if category}}&category={{category}}{{/if}}{{#if available}}&available={{available}}{{/if}}{{#if sort}}&sort={{sort}}{{/if}}">Anterior</a>
+            {{/if}}
+
+            <span>Página {{page}} de {{totalPages}}</span>
+
+            {{#if hasNextPage}}
+                <a href="?page={{nextPage}}{{#if limit}}&limit={{limit}}{{/if}}{{#if query}}&query={{query}}{{/if}}{{#if category}}&category={{category}}{{/if}}{{#if available}}&available={{available}}{{/if}}{{#if sort}}&sort={{sort}}{{/if}}">Siguiente</a>
+            {{/if}}
+        </div>
+    {{/unless}}
+{{else}}
+    <p>No hay productos disponibles.</p>
+{{/if}}

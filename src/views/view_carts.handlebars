@@ -1,0 +1,32 @@
+<h1>Lista de Productos del Carrito {{carts.title}}</h1>
+{{#if carts.products.length}}
+    <table>
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>descripción</th>
+            <th>Código</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Imagen</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each carts.products}}
+            {{!-- <div class="product-card"> --}}
+                <tr>
+                <td style="text-transform: uppercase;"><strong>{{product.title}}</strong></td>
+                <td>{{product.description}}</td>
+                <td>{{product.code}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.stock}}</td>
+                <td>{{#if product.status}}Disponible{{else}}Agotado{{/if}}</td>
+                <td><img src="{{product.thumbnails}}" alt="{{product.title}}" class="product-image"></td>
+                </tr>           
+        {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No hay productos disponibles.</p>
+{{/if}}

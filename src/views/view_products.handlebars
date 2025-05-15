@@ -1,0 +1,46 @@
+
+{{#if status}}
+    <h1>Lista de Productos</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>descripción</th>
+            <th>Código</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Imagen</th>
+            <th>Sumar al carrito</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#each payload}}
+                <tr>
+                <td>{{title}}</td>
+                <td>{{description}}</td>
+                <td>{{code}}</td>
+                <td>{{price}}</td>
+                <td>{{stock}}</td>
+                <td>{{#if status}}Disponible{{else}}Agotado{{/if}}</td>
+                <td><img src="{{thumbnails}}" alt="{{title}}" class="product-image"></td>
+                <td><button class="add-to-cart"><i class="fas fa-cart-plus"></i></button></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {{#if hasPrevPage}}
+            <a href="?page={{prevPage}}{{#if limit}}&limit={{limit}}{{/if}}{{#if query}}&query={{query}}{{/if}}{{#if category}}&category={{category}}{{/if}}{{#if available}}&available={{available}}{{/if}}{{#if sort}}&sort={{sort}}{{/if}}">Anterior</a>
+        {{/if}}
+
+        <span>Página {{page}} de {{totalPages}}</span>
+
+        {{#if hasNextPage}}
+            <a href="?page={{nextPage}}{{#if limit}}&limit={{limit}}{{/if}}{{#if query}}&query={{query}}{{/if}}{{#if category}}&category={{category}}{{/if}}{{#if available}}&available={{available}}{{/if}}{{#if sort}}&sort={{sort}}{{/if}}">Siguiente</a>
+        {{/if}}
+    </div>
+{{else}}
+    <h1>Lista de Productos <b>NO</b> encontrada</h1>
+{{/if}}

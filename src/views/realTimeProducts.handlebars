@@ -1,0 +1,25 @@
+<!-- Formulario para agregar productos -->
+<form id="productForm" class="product-form">
+    <input type="text" id="title" class="form-input" placeholder="Nombre" required />
+    <input type="number" id="price" class="form-input" placeholder="Precio" required />
+    <input type="text" id="description" class="form-input" placeholder="Descripción" required />
+    <input type="text" id="code" class="form-input" placeholder="Código" required />
+    <input type="number" id="stock" class="form-input" placeholder="Stock" required />
+    <input type="text" id="thumbnails" class="form-input" placeholder="URL de la Imagen" required />
+    
+    <div class="status-container">
+        <input type="checkbox" id="status" class="form-input" />
+        <label for="status">Disponible</label>
+    </div>
+
+    <button type="submit" class="btn-submit">Confirmar</button>
+</form>
+<h1>Lista de Productos</h1>
+<ul id="productList" class="product-list">
+    {{#each products}}
+    <li class="product-item">
+        <strong>{{this.title}}</strong> - ${{this.price}} - ${{this.descripcion}}
+        <button class="btn-delete" onclick="deleteProduct('{{this.id}}')">Eliminar</button>
+    </li>
+    {{/each}}
+</ul>
