@@ -22,6 +22,8 @@ class ProductManager
         
         const prodExis = await this.getProduct(newproduct[0].title, newproduct[0].code);
         if (prodExis) {
+            newproduct[0].stock = Number(newproduct[0].stock) + Number(prodExis.stock);
+            newproduct[0].status = (newproduct[0].status > 0)?true: false;
             return await this.updateProductById(prodExis._id, newproduct[0]);
         }
 
