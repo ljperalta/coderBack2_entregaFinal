@@ -2,8 +2,7 @@ const { getCart, getCartById, addCart, addProductsToCart, deleteAllProductsbyId,
 
 const getCarts = async (req, res) => {
     try {
-        const id = req.params.id;
-        const product = await getCart(id);
+        const product = await getCart();
 
         if (product) {
             res.status(200).json(product);
