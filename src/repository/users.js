@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const { hashPassword, comparePassword } = require('../utils/utils.js');
-const { addCart } = require('../managers/carts');
+const { addCart } = require('../repository/carts');
 const jwt = require('jsonwebtoken');
 
 class loginManager

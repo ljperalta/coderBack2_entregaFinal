@@ -1,4 +1,4 @@
-const Login = require('../managers/users.js');
+const Login = require('../repository/users.js');
 
 const login = async (req, res) => {
     const { user, password } = req.body;

@@ -1,5 +1,5 @@
 const { Server } = require("socket.io");
-const { getAllProducts, addProduct, deleteProductById } = require('../managers/products');
+const { getAllProducts, addProduct, deleteProductById } = require('../repository/products');
 
 module.exports = (server) => {
     const io = new Server(server);

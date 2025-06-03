@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getCartById } = require('../managers/carts');
+const { getCartById } = require('../repository/carts');
 
 router.get('/:id', async (req, res) => {
     try {

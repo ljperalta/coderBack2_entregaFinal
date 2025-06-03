@@ -1,4 +1,4 @@
-const { getAllProducts, getProductById, addProduct, updateProductById, deleteProductById } = require('../managers/products');
+const { getAllProducts, getProductById, addProduct, updateProductById, deleteProductById } = require('../repository/products');
 
 const getProds = async (req, res) => {
     try {
