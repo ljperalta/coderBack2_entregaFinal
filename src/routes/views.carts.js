@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 const { getCartById } = require('../repository/carts');
 
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const carts = await getCartById(req.params.id); 
+        const carts = await getCartById(req.user.id); 
         
         res.render("view_carts", {layout: "carts", carts });
     } catch (error) {
