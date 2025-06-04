@@ -5,11 +5,9 @@
         <tr>
             <th>Producto</th>
             <th>descripción</th>
-            <th>Código</th>
             <th>Precio</th>
-            <th>Stock</th>
-            <th>Estado</th>
             <th>Imagen</th>
+            <th>Quitar del carrito</th>
         </tr>
         </thead>
         <tbody>
@@ -18,11 +16,9 @@
                 <tr>
                 <td style="text-transform: uppercase;"><strong>{{product.title}}</strong></td>
                 <td>{{product.description}}</td>
-                <td>{{product.code}}</td>
                 <td>{{product.price}}</td>
-                <td>{{product.stock}}</td>
-                <td>{{#if product.status}}Disponible{{else}}Agotado{{/if}}</td>
                 <td><img src="{{product.thumbnails}}" alt="{{product.title}}" class="product-image"></td>
+                <td><button class="add-to-cart" onclick="agregar('{{_id}}')"><i class="fas fa-cart-plus"></i></button></td>
                 </tr>           
         {{/each}}
         </tbody>
@@ -30,3 +26,4 @@
 {{else}}
     <p>No hay productos disponibles.</p>
 {{/if}}
+<script src="script.js"></script>
