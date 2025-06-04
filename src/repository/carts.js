@@ -1,13 +1,28 @@
-const Cart = require("../models/cart")
+const User = require("../models/user")
+const Cart = require("../models/cart");
+const products = require("./products");
 
 class CartManager {
 
     getCart = async () => {      return await this.leerJSON()    }
 
-    getCartById = async (id) => {
-        const carts = await Cart.findById(id).populate("products.product")
-        return carts;
+    async getCartById(userId) {
+        const user = await User.findById(userId).populate({
+            path: 'cart',
+            populate: { path: 'products.product' }
+        });
+
+        if (!user || !user.cart) {
+            return { error: `No se encontró carrito para el usuario con ID ${userId}` };
+        }
+
+        return {
+            cartId: user.cart._id,
+            products: user.cart.products,
+            totalProd: user.cart.products.length 
+        };
     }
+
 
     addCart = async () => {
 
