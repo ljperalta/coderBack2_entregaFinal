@@ -1,6 +1,7 @@
 
 {{#if status}}
     <h1>Lista de Productos</h1>
+    <button onclick="irAlCarrito()" class="btn-cart">Ver Carrito 🛒</button>
     <table>
         <thead>
         <tr>
@@ -45,6 +46,9 @@
     <h1>Lista de Productos <b>NO</b> encontrada</h1>
 {{/if}}
 <script>
+    function irAlCarrito() {
+        window.location.href = '/api/carts/';
+    }
     async function agregar(productId) {
         try {
             const resCart = await fetch('http://localhost:8080/api/carts/');
