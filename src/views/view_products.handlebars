@@ -46,10 +46,10 @@
 {{/if}}
 <script>
     function agregar(id) {
-        console.log('http://localhost:8080//api/carts/'+id);
-        fetch(`http://localhost:8080//api/carts/${id}`)
+        console.log('http://localhost:8080/api/carts/'+id);
+        fetch(`http://localhost:8080/api/carts/${id}`)
         .then(response => {
-            console.log(response);
+            console.log(response.totalProd);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -57,7 +57,7 @@
         });
 
 
-        fetch(`/api/carts/68400523ff7810dacf473929/product/${id}`, {
+        /* fetch(`/api/carts/68400523ff7810dacf473929/product/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -73,6 +73,6 @@
         .catch(error => {
             console.error('Error:', error);
             alert('Error al agregar el producto al carrito');
-        });
+        }); */
     }
 </script>

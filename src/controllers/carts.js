@@ -17,7 +17,6 @@ const getCarts = async (req, res) => {
 const getCartsById = async (req, res) => {
     try {
         const id = req.params.id;
-        console.log(id, "id del carrito")
         const product = await getCartById(id);
 
         if (product) {
