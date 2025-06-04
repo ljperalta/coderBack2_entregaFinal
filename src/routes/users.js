@@ -6,7 +6,7 @@ const passport = require("passport");
 router.post("/login", loginn);
 router.post("/registrar", registrarr);
 router.get("/logout", logoutt );
-router.get("/api/sessions/current", passport.authenticate("jwt", { session: false }), (req, res) => {
+router.get("/api/sessions/current", passport.authenticate("current", { session: false }), (req, res) => {
   res.send({ status: "success", payload: req.user });
     });
 

@@ -20,6 +20,6 @@ const verifyToken = async (jwtPayload, done) => {
   return done(null, jwtPayload);
 }
 
-passport.use('jwt', new Strategy(opts, verifyToken));
+passport.use('current', new Strategy(opts, verifyToken));
 
 module.exports = passport;

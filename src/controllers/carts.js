@@ -1,22 +1,8 @@
-const { getCart, getCartById, addCart, addProductsToCart, deleteAllProductsbyId, deleteProductbyId, updateAllProductsbyId, updateProductsbyId } = require('../repository/carts');
-
-const getCarts = async (req, res) => {
-    try {
-        const product = await getCart();
-
-        if (product) {
-            res.status(200).json(product);
-        } else {
-            res.status(404).json({ message: `Carrito con ID ${id} no encontrado` });
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Error al buscar el carrito", error });
-    }
-};
+const { getCartById, addCart, addProductsToCart, deleteAllProductsbyId, deleteProductbyId, updateAllProductsbyId, updateProductsbyId } = require('../repository/carts');
 
 const getCartsById = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.user.id;
         const product = await getCartById(id);
 
         if (product) {
@@ -104,8 +90,7 @@ const updateProdbyId = async (req, res) => {
     }
 };
 
-module.exports = {  getCarts, 
-                    getCartsById,
+module.exports = {  getCartsById,
                     addCarts, 
                     addProductToCart, 
                     deleteAllProdbyId,

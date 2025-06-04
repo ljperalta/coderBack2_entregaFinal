@@ -4,8 +4,6 @@ const products = require("./products");
 
 class CartManager {
 
-    getCart = async () => {      return await this.leerJSON()    }
-
     async getCartById(userId) {
         const user = await User.findById(userId).populate({
             path: 'cart',
@@ -114,7 +112,6 @@ class CartManager {
 const cartManager = new CartManager('server/bd/carts.json')
 
 module.exports = {
-    getCart: async () => await cartManager.getCart(),
     getCartById: async (id) => await cartManager.getCartById(id),
     addCart: async () => await cartManager.addCart(),
     addProductsToCart: async (idCart, idProduct) => await cartManager.addProductsToCart(idCart, idProduct),

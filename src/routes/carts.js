@@ -1,10 +1,9 @@
 const express = require('express');
 const routerC = express.Router();
 
-const { getCarts, getCartsById, addCarts, addProductToCart, deleteAllProdbyId, deleteProdbyId, updateAllProdbyId, updateProdbyId } = require('../controllers/carts');
+const { getCartsById, addCarts, addProductToCart, deleteAllProdbyId, deleteProdbyId, updateAllProdbyId, updateProdbyId } = require('../controllers/carts');
 
-routerC.get('/', getCarts);
-routerC.get('/:id', getCartsById);
+routerC.get('/', getCartsById);
 routerC.post('/', addCarts);
 routerC.post('/:cid/product/:pid', addProductToCart);
 routerC.delete('/:id', deleteAllProdbyId);

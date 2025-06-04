@@ -45,34 +45,27 @@
     <h1>Lista de Productos <b>NO</b> encontrada</h1>
 {{/if}}
 <script>
-    function agregar(id) {
-        console.log('http://localhost:8080/api/carts/'+id);
-        fetch(`http://localhost:8080/api/carts/${id}`)
-        .then(response => {
-            console.log(response.totalProd);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al agregar el producto al carrito');
-        });
+    async function agregar(productId) {
+        try {
+            const resCart = await fetch('http://localhost:8080/api/carts/');
+            if (!resCart.ok) throw new Error('No se pudo obtener el carrito');
+            const data = await resCart.json();
+            const cartId = data.cartId;
 
-
-        /* fetch(`/api/carts/68400523ff7810dacf473929/product/${id}`, {
+            const resAdd = await fetch(`/api/carts/${cartId}/product/${productId}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('Producto agregado al carrito');
+            headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (resAdd.ok) {
+            alert('Producto agregado al carrito');
             } else {
-                alert('Error al agregar el producto al carrito');
+            alert('Error al agregar el producto al carrito');
             }
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error:', error);
             alert('Error al agregar el producto al carrito');
-        }); */
+        }
     }
+
 </script>
