@@ -55,7 +55,7 @@ class CartManager {
     };
 
     deleteProductsbyId = async (idCart, idProduct) => {
-
+        console.log(idCart, idProduct, "test");
         const updatedCart = await Cart.findByIdAndUpdate(
             idCart,
             { $pull: { products: { product: idProduct } } },
@@ -116,7 +116,7 @@ module.exports = {
     addCart: async () => await cartManager.addCart(),
     addProductsToCart: async (idCart, idProduct) => await cartManager.addProductsToCart(idCart, idProduct),
     deleteAllProductsbyId: async (id) => await cartManager.deleteAllProductsbyId(id),
-    deleteProductbyId: async (idCart, idProduct) => await cartManager.deleteProductbyId(idCart, idProduct),
+    deleteProductbyId: async (idCart, idProduct) => await cartManager.deleteProductsbyId(idCart, idProduct),
     updateAllProductsbyId: async (id, data) => await cartManager.updateAllProductsbyId(id, data),
     updateProductsbyId: async (idC, idP, data) => await cartManager.updateProductsbyId(idC, idP, data),
 };

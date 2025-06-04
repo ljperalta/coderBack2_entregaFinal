@@ -18,7 +18,7 @@
                 <td>{{product.description}}</td>
                 <td>{{product.price}}</td>
                 <td><img src="{{product.thumbnails}}" alt="{{product.title}}" class="product-image"></td>
-                <td><button class="add-to-cart" onclick="agregar('{{_id}}')"><i class="fas fa-cart-plus"></i></button></td>
+                <td><button class="add-to-cart" onclick="eliminar('{{_id}}')"><i class="fas fa-cart-plus"></i></button></td>
                 </tr>           
         {{/each}}
         </tbody>
@@ -26,4 +26,4 @@
 {{else}}
     <p>No hay productos disponibles.</p>
 {{/if}}
-<script src="script.js"></script>
+<script src="/js/script.js"></script>

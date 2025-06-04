@@ -56,6 +56,7 @@ const deleteAllProdbyId = async (req, res) => {
 const deleteProdbyId = async (req, res) => {
     try {
         const {idC, idP} = req.params;
+        console.log(idC, idP, "test");
         const result = await deleteProductbyId(idC, idP);
         res.status(201).json({ message: "Producto eliminado con exito", data : result});
     } catch (error) {
