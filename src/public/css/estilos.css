@@ -103,8 +103,8 @@ button:hover {
 }
 
 .add-to-cart-2 {
-  background-color: red;
-  color: white;
+  background-color: white;
+  color: red;
   border: none;
   padding: 8px 12px;
   border-radius: 5px;
@@ -114,7 +114,7 @@ button:hover {
 }
 
 .add-to-cart-2:hover {
-  background-color: #c82333;
+  background-color: #f8d7da;
 }
 
 .add-to-cart i {
