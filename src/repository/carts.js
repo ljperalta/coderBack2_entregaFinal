@@ -33,11 +33,32 @@ class CartManager {
         return result;
     }
 
-    async addProductsToCart(cartId, prodId) {
+    /*async addProductsToCart(cartId, prodId) {
         const cart = await Cart.findById(cartId);
         if (!cart) {     return { error: `Carrito con ID ${cartId} no encontrado` };     }
         
         cart.products.push({ product: prodId });
+
+        await cart.save();
+
+        return cart;
+    }*/
+    async addProductsToCart(cartId, prodId) {
+        const cart = await Cart.findById(cartId);
+        if (!cart) {
+            return { error: `Carrito con ID ${cartId} no encontrado` };
+        }
+
+        // Buscar si el producto ya está en el carrito
+        const existingProduct = cart.products.find(p => p.product.toString() === prodId);
+
+        if (existingProduct) {
+            // Si existe, incrementar la cantidad
+            existingProduct.quantity += 1;
+        } else {
+            // Si no existe, agregarlo con cantidad 1
+            cart.products.push({ product: prodId });
+        }
 
         await cart.save();
 

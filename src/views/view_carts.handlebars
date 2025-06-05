@@ -7,6 +7,7 @@
             <th>Producto</th>
             <th>descripción</th>
             <th>Precio</th>
+            <th>Cantidad</th>
             <th>Imagen</th>
             <th>Quitar del carrito</th>
         </tr>
@@ -18,6 +19,7 @@
                 <td style="text-transform: uppercase;"><strong>{{product.title}}</strong></td>
                 <td>{{product.description}}</td>
                 <td>{{product.price}}</td>
+                <td>{{quantity}}</td>
                 <td><img src="{{product.thumbnails}}" alt="{{product.title}}" class="product-image"></td>
                 <td><button class="add-to-cart-2" onclick="eliminar('{{product._id}}')"><i class="fa-solid fa-rectangle-xmark fa-2xl"></i></button></td>
                 </tr>           
