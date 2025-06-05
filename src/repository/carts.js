@@ -55,7 +55,6 @@ class CartManager {
     };
 
     deleteProductsbyId = async (idCart, idProduct) => {
-        console.log(idCart, idProduct, "test");
         const updatedCart = await Cart.findByIdAndUpdate(
             idCart,
             { $pull: { products: { product: idProduct } } },

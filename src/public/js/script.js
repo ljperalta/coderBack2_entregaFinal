@@ -31,18 +31,19 @@ async function eliminar(productId) {
         const data = await resCart.json();
         const cartId = data.cartId;
         console.log("test /api/carts/"+ cartId + "/product/" + productId);
-        const resAdd = await fetch(`/api/carts/${cartId}/product/${productId}`, {
+        const resAdd = await fetch(`/api/carts/${cartId}/products/${productId}`, {
         method: 'DELETE',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         });
 
         if (resAdd.ok) {
-        alert('Producto agregado al carrito');
+            alert('Producto eliminado del carrito');
         } else {
-        alert('Error al agregar el producto al carrito');
+            alert('Error al eliminar el producto del carrito');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al agregar el producto al carrito');
+        alert('Error al eliminarr el producto del carrito');
     }
 }
