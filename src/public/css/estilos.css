@@ -102,6 +102,21 @@ button:hover {
   transition: 0.3s;
 }
 
+.add-to-cart-2 {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.add-to-cart-2:hover {
+  background-color: #c82333;
+}
+
 .add-to-cart i {
   margin-right: 5px;
 }
