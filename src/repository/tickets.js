@@ -19,7 +19,8 @@ class TicketManager {
         return result;
     }
 }
+const newTicket = new TicketManager();
 
 module.exports = {
-    generateTicket: async (user) => await TicketManager.generateTicket(user),
+    generateTicket: async (user) => await newTicket.generateTicket(user),
 };

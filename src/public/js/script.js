@@ -47,3 +47,25 @@ async function eliminar(productId) {
         alert('Error al eliminarr el producto del carrito');
     }
 }
+
+async function finalizar(){
+    fetch('http://localhost:8080/api/tickets/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al generar el ticket');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert(data.message);
+        redireccionar('/products');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al generar el ticket');
+    });
+}
