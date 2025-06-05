@@ -5,6 +5,7 @@ const carts = require("./carts");
 const vistaProducts = require("./views.router");
 const vistaCarts = require("./views.carts");
 const users = require("./users");
+const tickets = require("./tickets");
 
 const passport = require("./../utils/passport.config.js");
 
@@ -16,5 +17,6 @@ router.get("/realTimeProducts", passport.authenticate("current", { session: fals
     res.render("realTimeProducts");
 });
 router.use("/", users);
+router.use("/api/tickets", passport.authenticate("current", { session: false }), tickets);
 
 module.exports = router;

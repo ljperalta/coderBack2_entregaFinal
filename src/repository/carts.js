@@ -1,6 +1,5 @@
 const User = require("../models/user")
 const Cart = require("../models/cart");
-const products = require("./products");
 
 class CartManager {
 
@@ -33,16 +32,6 @@ class CartManager {
         return result;
     }
 
-    /*async addProductsToCart(cartId, prodId) {
-        const cart = await Cart.findById(cartId);
-        if (!cart) {     return { error: `Carrito con ID ${cartId} no encontrado` };     }
-        
-        cart.products.push({ product: prodId });
-
-        await cart.save();
-
-        return cart;
-    }*/
     async addProductsToCart(cartId, prodId) {
         const cart = await Cart.findById(cartId);
         if (!cart) {
@@ -129,7 +118,7 @@ class CartManager {
     }
 }
 
-const cartManager = new CartManager('server/bd/carts.json')
+const cartManager = new CartManager()
 
 module.exports = {
     getCartById: async (id) => await cartManager.getCartById(id),
