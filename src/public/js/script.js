@@ -1,5 +1,5 @@
-function irAlCarrito() {
-    window.location.href = '/carts/';
+function redireccionar(ruta) {
+    window.location.href = ruta;
 }
 async function agregar(productId) {
     try {

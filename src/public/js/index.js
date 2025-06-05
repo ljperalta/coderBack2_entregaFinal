@@ -18,7 +18,7 @@ socket.on("updateProducts", (products) => {
     productList.innerHTML = products.map(product => `
         <li>
             <strong>${product.title}</strong> - $${product.price} - ${product.description}
-            <button onclick="deleteProduct('${product._id}')">Eliminar</button>
+            <button class="btn-delete" onclick="deleteProduct('${product._id}')">Eliminar</button>
         </li>
     `).join("");
 });
