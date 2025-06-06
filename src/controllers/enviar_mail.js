@@ -13,13 +13,13 @@ const enviarMail = async (req, res) => {
 
 const resetPassword = async (req, res) => {
   try {
-    const { token, newPassword } = req.query;
+    const { token, newPassword } = req.body;
     if (!token || !newPassword) {
       return res.status(400).json({ message: 'Token y nueva contraseña son requeridos' });
     }
 
     await resetPassword(token, newPassword);
-    res.status(200).json({ message: 'Contraseña actualizada correctamente' });
+    res.status(200).json({ message: 'Contraseña actualizada correctamente', ok: true });
   } catch (error) {
     console.error('Error al restablecer la contraseña:', error);
     res.status(500).json({ message: 'Error al restablecer la contraseña', error: error.message });
