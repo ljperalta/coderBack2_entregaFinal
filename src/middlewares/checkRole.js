@@ -1,10 +1,10 @@
-module.exports = function checkRole(requiredRole) {
+module.exports = function checkRole(allowedRoles = []) {
   return (req, res, next) => {
     try {
       const user = req.user;
 
-      if (!user || user.role !== requiredRole) {
-        //return res.status(403).json({ message: "Acceso denegado: permiso insuficiente" });
+      // Si no hay usuario o su rol no está en la lista permitida
+      if (!user || !allowedRoles.includes(user.role)) {
         return res.status(403).render('accessDenied', { layout: false });
       }
 

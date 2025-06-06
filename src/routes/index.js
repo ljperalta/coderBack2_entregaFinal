@@ -11,11 +11,11 @@ const mail = require("./mail");
 const passport = require("./../utils/passport.config.js");
 const checkRole = require("../middlewares/checkRole");
 
-router.use("/api/products", passport.authenticate("current", { session: false }), checkRole("user"),products);
-router.use("/api/carts", passport.authenticate("current", { session: false }), checkRole("user"),carts);
-router.use("/products", passport.authenticate("current", { session: false }), checkRole("user"), vistaProducts);
-router.use("/carts", passport.authenticate("current", { session: false }) , checkRole("user"), vistaCarts);
-router.get("/realTimeProducts", passport.authenticate("current", { session: false }), checkRole("admin"), (req, res) => {
+router.use("/api/products", passport.authenticate("current", { session: false }), checkRole(["user", "admin"]),products);
+router.use("/api/carts", passport.authenticate("current", { session: false }), checkRole(["user", "admin"]),carts);
+router.use("/products", passport.authenticate("current", { session: false }), checkRole(["user", "admin"]), vistaProducts);
+router.use("/carts", passport.authenticate("current", { session: false }) , checkRole(["user", "admin"]), vistaCarts);
+router.get("/realTimeProducts", passport.authenticate("current", { session: false }), checkRole(["admin"]), (req, res) => {
     res.render("realTimeProducts");
 });
 router.use("/", users);
