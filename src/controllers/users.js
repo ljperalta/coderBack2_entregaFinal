@@ -42,7 +42,7 @@ const registrar = async (req, res) => {
 
 const logout = async (req, res) => {
   res.clearCookie("jwt");
-  res.redirect("/");
+  return res.json({ ok: true, message: "Cierre de sesion exitoso"});
 }
 
 module.exports = {

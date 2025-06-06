@@ -52,3 +52,15 @@ function deleteProduct(id) {
     socket.emit("deleteProduct", id);
 }
 
+function logout() {
+    fetch("/logout")
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "/";
+        } else {
+            console.error("Error al cerrar sesión");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
+
