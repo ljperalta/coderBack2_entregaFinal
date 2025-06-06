@@ -11,10 +11,10 @@ const mail = require("./mail");
 const passport = require("./../utils/passport.config.js");
 const checkRole = require("../middlewares/checkRole");
 
-router.use("/api/products", passport.authenticate("current", { session: false }), products);
-router.use("/api/carts", passport.authenticate("current", { session: false }), carts);
+router.use("/api/products", passport.authenticate("current", { session: false }), checkRole("user"),products);
+router.use("/api/carts", passport.authenticate("current", { session: false }), checkRole("user"),carts);
 router.use("/products", passport.authenticate("current", { session: false }), checkRole("user"), vistaProducts);
-router.use("/carts", passport.authenticate("current", { session: false }) , vistaCarts);
+router.use("/carts", passport.authenticate("current", { session: false }) , checkRole("user"), vistaCarts);
 router.get("/realTimeProducts", passport.authenticate("current", { session: false }), checkRole("admin"), (req, res) => {
     res.render("realTimeProducts");
 });
