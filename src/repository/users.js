@@ -79,6 +79,18 @@ class loginManager
     }
   }
 
+  async checkUser(email) {
+      try {
+          const user = await User.findOne({ email: email });
+          if (!user) {
+              return false;
+          }
+          return true;
+      } catch (err) {
+          console.error("Error al verificar el usuario:", err);
+          throw err;
+      }
+  }
 
   generateToken(user) {
       const payload = { id: user._id, first_name: user.first_name, last_name: user.last_name ,email: user.email };

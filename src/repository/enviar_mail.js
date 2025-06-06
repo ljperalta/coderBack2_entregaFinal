@@ -56,6 +56,8 @@ const resetPass = async (token, newPassword) => {
 };
 
 
+
+
 module.exports = {
     sendMail,
     resetPass
