@@ -4,7 +4,8 @@ module.exports = function checkRole(requiredRole) {
       const user = req.user;
 
       if (!user || user.role !== requiredRole) {
-        return res.status(403).json({ message: "Acceso denegado: permiso insuficiente" });
+        //return res.status(403).json({ message: "Acceso denegado: permiso insuficiente" });
+        return res.status(403).render('accessDenied', { layout: false });
       }
 
       next();
