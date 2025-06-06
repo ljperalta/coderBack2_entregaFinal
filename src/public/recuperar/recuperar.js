@@ -2,7 +2,7 @@
 document.getElementById("Form").addEventListener("submit", async function (e) {
   e.preventDefault();
   const email = document.getElementById("email").value;
-    alert("Se ha enviado un correo a " + email + " con las instrucciones para recuperar tu contraseña.");
+
   try {
     const response = await fetch("http://localhost:8080/mail", {
       method: "POST",
@@ -15,7 +15,7 @@ document.getElementById("Form").addEventListener("submit", async function (e) {
     });
 
     const data = await response.json();
-    console.log("Respuesta del servidor:", data);
+    
     const msg = document.getElementById("responseMsg");
     if (data.ok) {
       msg.textContent = data.message;
