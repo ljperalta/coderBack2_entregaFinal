@@ -88,7 +88,7 @@ class CartManager {
     };
 
     updateProductsbyId = async (idC, idP, data) => {
-        console.log(idC , idP, data , "test222")
+        //console.log(idC , idP, data , "test222")
         const cart = await Cart.findById(idC).populate("products.product")
         //console.log(cart)
         const productToUpdate = cart.products.find(item => item._id.toString() === idP);

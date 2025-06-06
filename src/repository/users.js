@@ -2,6 +2,7 @@ const User = require('../models/user');
 const { hashPassword, comparePassword } = require('../utils/utils.js');
 const { addCart } = require('../repository/carts');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 class loginManager
 {
@@ -50,6 +51,34 @@ class loginManager
           throw err; // Error al buscar el usuario
       } 
   }
+
+  async updateUser(email, userData) {
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return null;
+
+        // Si viene la contraseña, hacemos validación y hash
+        if (userData.password) {
+            const isSamePassword = await bcrypt.compare(userData.password, user.password);
+            if (isSamePassword) {
+                throw new Error('No puedes usar la misma contraseña anterior.');
+            }
+
+            const hashedPassword = await bcrypt.hash(userData.password, 10);
+            userData.password = hashedPassword;
+        }
+
+        // Actualizamos el resto de los campos
+        Object.assign(user, userData);
+        await user.save();
+
+        return user;
+    } catch (err) {
+        console.error("Error al actualizar el usuario:", err);
+        throw err;
+    }
+  }
+
 
   generateToken(user) {
       const payload = { id: user._id, first_name: user.first_name, last_name: user.last_name ,email: user.email };

@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { enviarMail } = require("../controllers/enviar_mail.js");
+const { enviarMail, resetPassword } = require("../controllers/enviar_mail.js");
 
 router.post("/mail", enviarMail);
+router.get("/reset-password", resetPassword);
+
 
 module.exports = router;
