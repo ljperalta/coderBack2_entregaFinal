@@ -17,15 +17,15 @@
         </thead>
         <tbody>
             {{#each payload}}
-                <tr>
-                <td>{{title}}</td>
-                <td>{{description}}</td>
-                <td>{{code}}</td>
-                <td>{{price}}</td>
-                <td>{{stock}}</td>
-                <td>{{#if status}}Disponible{{else}}Agotado{{/if}}</td>
-                <td><img src="{{thumbnails}}" alt="{{title}}" class="product-image"></td>
-                <td><button class="add-to-cart" onclick="agregar('{{_id}}')"><i class="fas fa-cart-plus"></i></button></td>
+                <tr class="fila" data-stock="{{stock}}">
+                    <td>{{title}}</td>
+                    <td>{{description}}</td>
+                    <td>{{code}}</td>
+                    <td>{{price}}</td>
+                    <td>{{stock}}</td>
+                    <td>{{#if status}}Disponible{{else}}Agotado{{/if}}</td>
+                    <td><img src="{{thumbnails}}" alt="{{title}}" class="product-image"></td>
+                    <td><button class="add-to-cart" onclick="agregar('{{_id}}')" ><i class="fas fa-cart-plus" ></i></button></td>
                 </tr>
             {{/each}}
         </tbody>
@@ -46,3 +46,23 @@
     <h1>Lista de Productos <b>NO</b> encontrada</h1>
 {{/if}}
 <script src="/js/script.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const filas = document.querySelectorAll(".fila");
+
+    filas.forEach(fila => {
+      const stock = parseInt(fila.getAttribute("data-stock"), 10);
+
+      if (stock === 0) {
+        fila.style.backgroundColor = "red";
+
+        // También podés desactivar el botón si querés:
+        const boton = fila.querySelector(".add-to-cart");
+        if (boton) {
+          boton.disabled = true;
+          boton.title = "Sin stock";
+        }
+      }
+    });
+  });
+</script>
