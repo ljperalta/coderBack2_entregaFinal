@@ -81,6 +81,6 @@ module.exports = {
     getAllProducts: async () => await prod.getProducts(),
     getProductById: async (id) => await prod.getProductById(id),
     addProduct: async (producto) => await prod.addProduct(producto),
-    updateProductById: async (id, newPrice) => await prod.updateProductById(id, newPrice),
+    updateProductById: async (id, data) => await prod.updateProductById(id, data),
     deleteProductById: async (id) => await prod.deleteProductById(id)
 };

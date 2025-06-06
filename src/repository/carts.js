@@ -57,7 +57,7 @@ class CartManager {
     deleteAllProductsbyId = async (id) => {
 
         const result = await Cart.updateOne(
-            { _id: id.id },
+            { _id: id },
             { $set: { products: [] } }
         );
         

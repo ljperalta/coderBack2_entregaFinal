@@ -30,7 +30,7 @@ async function eliminar(productId) {
         if (!resCart.ok) throw new Error('No se pudo obtener el carrito');
         const data = await resCart.json();
         const cartId = data.cartId;
-        console.log("test /api/carts/"+ cartId + "/product/" + productId);
+        
         const resAdd = await fetch(`/api/carts/${cartId}/products/${productId}`, {
         method: 'DELETE',
         credentials: 'include',
