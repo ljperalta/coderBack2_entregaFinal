@@ -3,7 +3,7 @@ const router = express.Router();
 const { enviarMail, resetPassword } = require("../controllers/enviar_mail.js");
 
 router.post("/mail", enviarMail);
-router.get("/reset-password", resetPassword);
+router.post("/reset-password", resetPassword);
 
 
 module.exports = router;

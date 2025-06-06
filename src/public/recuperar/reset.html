@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualización de Calve</title>
+    <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-    Aca actualiza los datos de tu cuenta:
-    <form id="reset">
-        <input type="email" id="email" name="email" hidden>
-        <label for="newPassword">Nueva Contraseña:</label>
-        <input type="newPassword" id="newPassword" name="newPassword" required>
-        <label for="token">Token recibido por mail</label>
-        <input type="text" id="token" name="token" required>
-        <label for="confirmPassword">Confirmar Contraseña:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required>
-        <br>
-        <button type="submit">Actualizar</button>
-    </form>
+    <div class="container">
+        
+        <form id="reset">
+            <h2>Actualización de Contraseña</h2>
+            <input type="email" id="email" name="email" hidden>
+            <label for="newPassword">Nueva Contraseña:</label>
+            <input type="newPassword" id="newPassword" name="newPassword" required>
+            <label for="confirmPassword">Confirmar Contraseña:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <label for="token">Token recibido por mail</label>
+            <input type="text" id="token" name="token" required>
+            <br>
+            <button type="submit">Actualizar</button>
+        </form>
+    </div>
     <script>
         document.getElementById("reset").addEventListener("submit", async function (e) {
         e.preventDefault();
         const newPass = document.getElementById("newPassword").value;
         const token = document.getElementById("token").value;
-
+            
         try {
             const response = await fetch("http://localhost:8080/reset-password", {
             method: "POST",

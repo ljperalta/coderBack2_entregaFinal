@@ -42,7 +42,7 @@ const sendMail = async (toEmail) => {
     await transporter.sendMail(configMail);
 };
 
-const resetPassword = async (token, newPassword) => {
+const resetPass = async (token, newPassword) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const email = decoded.email;
@@ -59,5 +59,5 @@ const resetPassword = async (token, newPassword) => {
 
 module.exports = {
     sendMail,
-    resetPassword
+    resetPass
 };

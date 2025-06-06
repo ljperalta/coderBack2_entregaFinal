@@ -1,4 +1,4 @@
-const { sendMail } = require('../repository/enviar_mail');
+const { sendMail, resetPass } = require('../repository/enviar_mail');
 
 const enviarMail = async (req, res) => {
   try {
@@ -13,17 +13,20 @@ const enviarMail = async (req, res) => {
 
 const resetPassword = async (req, res) => {
   try {
-    const { token, newPassword } = req.body;
+    const token = req.body.token;
+    const newPassword = req.body.newPassword;
+    console.log('Token:', token);
+    console.log('Nueva contraseña:', newPassword);
     if (!token || !newPassword) {
       return res.status(400).json({ message: 'Token y nueva contraseña son requeridos' });
     }
 
-    await resetPassword(token, newPassword);
-    res.status(200).json({ message: 'Contraseña actualizada correctamente', ok: true });
-  } catch (error) {
-    console.error('Error al restablecer la contraseña:', error);
-    res.status(500).json({ message: 'Error al restablecer la contraseña', error: error.message });
-  }
+    await resetPass(token, newPassword);
+        res.status(200).json({ message: 'Contraseña actualizada correctamente', ok: true });
+    } catch (error) {
+        console.error('Error al restablecer la contraseña:', error);
+        res.status(500).json({ message: 'Error al restablecer la contraseña', error: error.message });
+    }
 }
 
 module.exports = {  enviarMail , resetPassword };
