@@ -93,7 +93,7 @@ class loginManager
   }
 
   generateToken(user) {
-      const payload = { id: user._id, first_name: user.first_name, last_name: user.last_name ,email: user.email };
+      const payload = { id: user._id, first_name: user.first_name, last_name: user.last_name ,email: user.email, role: user.role, };
       return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '12h' });
   }
 }
