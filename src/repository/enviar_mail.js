@@ -1,5 +1,4 @@
 const createTransport = require("nodemailer").createTransport;
-const { templateHtml } = require("../utils/template.js");
 const jwt = require("jsonwebtoken");
 const { updateUser } = require("../repository/users.js");
 require("dotenv").config();
@@ -24,17 +23,17 @@ const sendMail = async (toEmail) => {
         { expiresIn: '1h' }
     );
 
-    const resetLink = `http://localhost:8080/reset-password?token=${token}`;
-
     const configMail = {
         from: process.env.EMAIL_USER,
         to: toEmail, // acá va el correo del usuario
         subject: "Recuperación de contraseña",
         html: `
         <h2>Restablecer tu contraseña</h2>
+        <p>Hemos recibido una solicitud para restablecer tu contraseña.</p>
+        <p>Si no has solicitado este cambio, ignora este correo.</p>
+        <p>Token de seguridad: ${token}</p>
         <p>Haz clic en el siguiente enlace para restablecer tu contraseña:</p>
         <a href="http://localhost:8080/recuperar/reset.html">Restablecer contraseña</a>
-        <p>O copia y pega el siguiente enlace en tu navegador: ${resetLink}</p>
         <p><small>Este enlace expirará en 1 hora.</small></p>
         `,
     };
@@ -49,7 +48,7 @@ const resetPass = async (token, newPassword) => {
 
         await updateUser(email, { password: newPassword });
 
-        console.log(`Contraseña actualizada para el usuario: ${email}`);
+        //console.log(`Contraseña actualizada para el usuario: ${email}`);
     } catch (error) {
         console.error('Error al restablecer la contraseña:', error);
         throw new Error(error.message || 'Token inválido o expirado');

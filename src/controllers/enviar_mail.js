@@ -15,8 +15,7 @@ const resetPassword = async (req, res) => {
   try {
     const token = req.body.token;
     const newPassword = req.body.newPassword;
-    console.log('Token:', token);
-    console.log('Nueva contraseña:', newPassword);
+    
     if (!token || !newPassword) {
       return res.status(400).json({ message: 'Token y nueva contraseña son requeridos' });
     }
